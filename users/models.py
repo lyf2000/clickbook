@@ -6,3 +6,9 @@ from django.db import models
 
 class User(AbstractUser):
     pass
+
+
+class Author(models.Model):
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64)
+    patronymic = models.CharField(max_length=64)
