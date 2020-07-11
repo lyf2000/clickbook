@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from books.models import Book
+from books.models import Book, Order
 from users.models import Author
 
 
@@ -18,3 +18,11 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ('id', 'name', 'cost', 'author')
+
+
+class OrderCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = ('book', 'call', 'comment')
+        extra_kwargs = {'book': {'required': True}}
