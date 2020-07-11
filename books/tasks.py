@@ -3,7 +3,9 @@ from django.core.mail import EmailMultiAlternatives
 
 from books.helper import get_email_message
 from books.models import Order
+from clickbook.settings import ADMINS
 
+ADMIN_EMAILS = ADMINS
 
 @shared_task
 def order_book(order_id):
@@ -14,7 +16,8 @@ def order_book(order_id):
 
     message = get_email_message(order)
 
-    send_email.delay('lyf2000@mail.ru', message)
+    for email in ADMIN_EMAILS:
+        send_email.delay(email[1], message)
 
 
 @shared_task

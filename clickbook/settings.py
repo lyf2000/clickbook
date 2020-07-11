@@ -48,6 +48,11 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL='users.User'
 
+ADMINS = [
+    ('Name', 'lyf2000@mail.ru'),
+
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
