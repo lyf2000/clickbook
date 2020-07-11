@@ -13,3 +13,11 @@ class Book(models.Model):
             raise ValidationError(
                 _('Zero-cost book is not available!')
             )
+
+
+class Order(models.Model):
+    book = models.ForeignKey('books.Book', on_delete=models.SET_NULL, related_name='orders', null=True)
+    client = models.ForeignKey('users.User', on_delete=models.SET_NULL, related_name='orders', null=True)
+    call = models.PositiveIntegerField()
+    comment = models.CharField(max_length=256, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
