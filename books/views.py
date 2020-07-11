@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 from books.models import Book, Order
 from books.serializers import BookSerializer, OrderCreateSerializer
@@ -14,6 +15,7 @@ class BookListView(ListAPIView):
 class OrderCreateView(CreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderCreateSerializer
+    permission_classes = (IsAuthenticated, )
     
     def create(self, request, *args, **kwargs):
         serializer = OrderCreateSerializer(data=request.data)
