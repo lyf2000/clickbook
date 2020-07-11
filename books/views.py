@@ -25,4 +25,4 @@ class OrderCreateView(CreateAPIView):
         order = Order.objects.create(**order_kwargs, client=request.user)
         order_book(order.id)
         headers = self.get_success_headers(serializer.data)
-        return Response({}, status=status.HTTP_201_CREATED, headers=headers)
+        return Response({'data': 'OK'}, status=status.HTTP_201_CREATED, headers=headers)
