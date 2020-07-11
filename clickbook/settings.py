@@ -108,6 +108,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'nda030600@gmail.com'
+# EMAIL_HOST_USER = os.getenv('EMAIL')
+EMAIL_HOST_PASSWORD = 'LFVBH0110'
+# EMAIL_HOST_PASSWORD = os.getenv('PASSWORD')
+EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_IGNORE_RESULT = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from books.models import Book, Order
 from books.serializers import BookSerializer, OrderCreateSerializer
+from books.tasks import order_book
 
 
 class BookListView(ListAPIView):
@@ -21,6 +22,7 @@ class OrderCreateView(CreateAPIView):
         serializer = OrderCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         order_kwargs = serializer.validated_data
-        Order.objects.create(**order_kwargs, client=request.user)
+        order = Order.objects.create(**order_kwargs, client=request.user)
+        order_book(order.id)
         headers = self.get_success_headers(serializer.data)
         return Response({}, status=status.HTTP_201_CREATED, headers=headers)
