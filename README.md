@@ -26,6 +26,14 @@ WARNING!! (You need to have docker and docker-compose installed)
 
 ### TUT
 
+First of all, you need to specify all admin-emails that will be notified about new order, just open 'clickbook/settings.py' and add new emails to the list:
+```
+ADMINS = [
+    ('Name', 'lyf2000@mail.ru'),
+    ...
+]
+```
+
 List of APIs:
 
 - Registration `/signup/` POST body:
